@@ -22,6 +22,19 @@
             <TextBox HorizontalAlignment="Left" Height="22" Margin="476,280,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="306"/>
             <TextBox HorizontalAlignment="Left" Height="22" Margin="476,307,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="306"/>
             <TextBox HorizontalAlignment="Left" Height="22" Margin="476,334,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="306"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,10,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,37,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,64,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,91,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,118,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,145,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,172,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,199,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,226,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,253,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,280,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,307,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="409,334,0,0" VerticalAlignment="Top" Height="22" Width="51"/>
         </Grid>
 
     </Grid>
