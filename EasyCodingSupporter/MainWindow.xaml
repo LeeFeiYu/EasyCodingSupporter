@@ -8,11 +8,12 @@
         Title="EasyCodingSupporter" Height="450" Width="800">
     <Grid>
         <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792">
-            <TextBox x:Name="tbxMain" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="683"/>
-            <Button Content="LoadFile" HorizontalAlignment="Left" Margin="707,277,0,0" VerticalAlignment="Top" Width="75"/>
-            <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="707,323,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" KeyUp="btnRun_KeyUp"/>
-            <Label Content="1. #1부터 #12&#xD;&#xA;까지 지원 가능.&#xD;&#xA;&#xD;&#xA;2. 읽을 파을의&#xD;&#xA;각 단어는 ` 한 개&#xD;&#xA;&#xD;&#xA;3. 단어의 끝은&#xD;&#xA;`` 두 개&#xD;&#xA;&#xD;&#xA;4. 즉, 숫자 1 옆의&#xD;&#xA;~의 키에 해당하는&#xD;&#xA;`로 구분.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Height="154" Margin="698,10,0,0" VerticalAlignment="Top" Width="84" FontSize="8"/>
-            <Label Content="Ver: 1.0.0" HorizontalAlignment="Left" Height="26" Margin="707,383,0,0" VerticalAlignment="Top" Width="75"/>
+            <TextBox x:Name="tbxMain" Margin="10,44,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="683" Height="365" VerticalAlignment="Top"/>
+            <Button x:Name="btnLoadFile" Content="LoadFile" Margin="0,277,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnLoadFile_Click"/>
+            <Button x:Name="btnRun" Content="Run" Margin="0,323,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnRun_Click"/>
+            <Label Content="1. #1부터 #12&#xD;&#xA;까지 지원 가능.&#xD;&#xA;&#xD;&#xA;2. 읽을 파을의&#xD;&#xA;각 단어는 ` 한 개&#xD;&#xA;&#xD;&#xA;3. 단어의 끝은&#xD;&#xA;`` 두 개&#xD;&#xA;&#xD;&#xA;4. 즉, 숫자 1 옆의&#xD;&#xA;~의 키에 해당하는&#xD;&#xA;`로 구분.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" Height="154" Margin="0,10,10,0" VerticalAlignment="Top" FontSize="8" HorizontalAlignment="Right" Width="84"/>
+            <Label Content="Ver: 1.0.0" Height="26" Margin="0,383,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+            <TextBox x:Name="tbxSelectedFile" Margin="10,10,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="683" Height="29" VerticalAlignment="Top"/>
         </Grid>
 
     </Grid>

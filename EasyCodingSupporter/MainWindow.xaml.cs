@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EasyCodingSupporter.Class;
+using System.IO;
+using Microsoft.Win32;
 
 namespace EasyCodingSupporter
 {
@@ -32,11 +34,39 @@ namespace EasyCodingSupporter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRun_KeyUp(object sender, KeyEventArgs e)
+      
+        public void LoadFile()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog(); // 파일 열기 코드
+            fileDialog.Multiselect = true;
+            fileDialog.Filter = "EasyCodingSupporter|*.txt";
+            fileDialog.DefaultExt = ".txt";
+            Nullable<bool> dialogOK = fileDialog.ShowDialog();
+            string filename = fileDialog.FileName;
+            
+
+            if (dialogOK == true)
+            {
+                string strFilenames = "";
+                foreach (string strFilename in fileDialog.FileNames)
+                {
+                    strFilenames += ";" + strFilename;
+                }
+                strFilenames = strFilenames.Substring(1);
+                tbxSelectedFile.Text = strFilenames;
+            }
+        }
+
+        private void btnLoadFile_Click(object sender, RoutedEventArgs e)
+        {
+            //LoadFileClass loadFile = new LoadFileClass();
+            LoadFile();
+        }
+
+        private void btnRun_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(tbxMain.Text) == false)
             {
-                LoadFileClass Coding = new LoadFileClass();
                 RunCodingClass File = new RunCodingClass();
             }
             else
