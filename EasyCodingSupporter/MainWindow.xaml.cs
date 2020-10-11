@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using EasyCodingSupporter.Class;
 using System.IO;
 using Microsoft.Win32;
+using System.Reflection;
 
 namespace EasyCodingSupporter
 {
@@ -34,7 +35,8 @@ namespace EasyCodingSupporter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-      
+
+        #region LoadFile 파일 로드 부분
         public void LoadFile()
         {
             OpenFileDialog fileDialog = new OpenFileDialog(); // 파일 열기 코드
@@ -56,7 +58,36 @@ namespace EasyCodingSupporter
                 tbxSelectedFile.Text = strFilenames;
             }
         }
+        #endregion
 
+        #region TranslateFile 파일 변환 부분
+        //public static string TranslateFile(IEnumerable<TextContentsPart> Parts)
+        //{
+        //    StringBuilder textContents = new StringBuilder();
+        //    [DefaultMember("Sentence")]
+        //}
+        #endregion
+
+        #region SaveFile 파일 저장 부분
+        public void SaveFile()
+        {
+            //File.WriteAllText("test.txt", txtConverter.Convert(_subtitleParts));
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "txt file|*.txt";
+            saveFileDialog1.Title = "txt저장";
+            var result = saveFileDialog1.ShowDialog();
+
+
+            //if (result == true)
+            //{// txt파일로 저장. 
+
+            //    File.WriteAllText(saveFileDialog1.FileName, txtConverter.Convert(_subtitleParts));
+            //}
+        }
+
+        #endregion
+
+        #region MainProgrammingPart 주요 부분
         private void btnLoadFile_Click(object sender, RoutedEventArgs e)
         {
             //LoadFileClass loadFile = new LoadFileClass();
@@ -67,12 +98,15 @@ namespace EasyCodingSupporter
         {
             if (String.IsNullOrWhiteSpace(tbxMain.Text) == false)
             {
-                RunCodingClass File = new RunCodingClass();
+                //RunCodingClass File = new RunCodingClass();
+                //TranslateFile();
+                SaveFile();
             }
             else
             {
                 MessageBox.Show("텍스트 박스에 내용이 없습니다", "입력에러");
             }
         }
+        #endregion
     }
 }
