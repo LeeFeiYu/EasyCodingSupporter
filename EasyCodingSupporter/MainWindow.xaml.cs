@@ -142,5 +142,12 @@ namespace EasyCodingSupporter
             }
         }
         #endregion
+
+        private void btnProcess_Click(object sender, RoutedEventArgs e)
+        {
+            //TranslateFile path = new TranslateFile();
+            MessageBox.Show(tbxSelectedFile.Text);
+        }
+       
     }
 }
