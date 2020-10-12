@@ -146,7 +146,31 @@ namespace EasyCodingSupporter
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
             //TranslateFile path = new TranslateFile();
-            MessageBox.Show(tbxSelectedFile.Text);
+            //MessageBox.Show(tbxSelectedFile.Text);
+            int counter = 0;
+            string line;
+            string words;
+
+            // Read the file and display it line by line.  
+            System.IO.StreamReader contents = new System.IO.StreamReader(tbxMain.Text);
+            System.IO.StreamReader file = new System.IO.StreamReader(@tbxSelectedFile.Text);
+
+            while((line = contents.ReadLine()) != null)
+            {
+
+                while ((words = file.ReadLine()) != null)
+                {
+                    //System.Console.WriteLine(line);
+                    tbxMain.Text = words;
+                    counter++;
+                }
+            }
+
+
+            file.Close();
+            //System.Console.WriteLine("There were {0} lines.", counter);
+            // Suspend the screen.  
+            System.Console.ReadLine();
         }
        
     }
