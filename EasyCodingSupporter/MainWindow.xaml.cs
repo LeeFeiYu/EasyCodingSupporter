@@ -17,6 +17,10 @@ using EasyCodingSupporter.Class;
 using System.IO;
 using Microsoft.Win32;
 using System.Reflection;
+using EasyCodingSupporter.Class;
+
+
+
 
 namespace EasyCodingSupporter
 {
@@ -39,8 +43,8 @@ namespace EasyCodingSupporter
         /// <param name="e"></param>
         
         //전역변수 부분
-        int counter = 0;
-        string line;
+        //int counter = 0;
+        //string line;
 
         #region LoadFile 파일 로드 부분
         public void LoadFile()
@@ -50,7 +54,7 @@ namespace EasyCodingSupporter
             openFileDialog.Filter = "EasyCodingSupporter|*.txt";
             openFileDialog.DefaultExt = ".txt";
             Nullable<bool> dialogOK = openFileDialog.ShowDialog();
-            string filename = openFileDialog.FileName;
+            //string fileName = openFileDialog.FileName;
             
 
             if (dialogOK == true)
@@ -62,6 +66,8 @@ namespace EasyCodingSupporter
                 }
                 strFilenames = strFilenames.Substring(1);
                 tbxSelectedFile.Text = strFilenames;
+                LoadFileClass setting = new LoadFileClass();
+                setting.loadedFile = tbxSelectedFile.Text;
             }
         }
         #endregion
@@ -101,7 +107,7 @@ namespace EasyCodingSupporter
 
         #endregion
 
-        #region MainProgrammingPart 주요 부분
+        #region MainPart 주요 부분
         private void btnLoadFile_Click(object sender, RoutedEventArgs e)
         {
             //LoadFileClass loadFile = new LoadFileClass();
@@ -135,21 +141,6 @@ namespace EasyCodingSupporter
                 tbxMain.AcceptsReturn = true;
             }
         }
-        //public bool AcceptsReturn { get; set; }
-        //public void CreateMyMultilineTextBox()
-        //{
-        //    // Create an instance of a TextBox control.
-        //    TextBox tbxMain = new TextBox();
-
-        //    // Set the Multiline property to true.
-        //    tbxMain.Multiline = true;
-        //    // Add vertical scroll bars to the TextBox control.
-        //    tbxMain.ScrollBars = ScrollBars.Vertical;
-        //    // Allow the RETURN key to be entered in the TextBox control.
-        //    tbxMain.AcceptsReturn = true;
-        //    // Allow the TAB key to be entered in the TextBox control.
-        //    tbxMain.AcceptsTab = true;
-        //}
         #endregion
     }
 }
