@@ -25,6 +25,8 @@ namespace EasyCodingSupporter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string fileName;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,22 +37,26 @@ namespace EasyCodingSupporter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
+        //전역변수 부분
+        int counter = 0;
+        string line;
 
         #region LoadFile 파일 로드 부분
         public void LoadFile()
         {
-            OpenFileDialog fileDialog = new OpenFileDialog(); // 파일 열기 코드
-            fileDialog.Multiselect = true;
-            fileDialog.Filter = "EasyCodingSupporter|*.txt";
-            fileDialog.DefaultExt = ".txt";
-            Nullable<bool> dialogOK = fileDialog.ShowDialog();
-            string filename = fileDialog.FileName;
+            OpenFileDialog openFileDialog = new OpenFileDialog(); // 파일 열기 코드
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "EasyCodingSupporter|*.txt";
+            openFileDialog.DefaultExt = ".txt";
+            Nullable<bool> dialogOK = openFileDialog.ShowDialog();
+            string filename = openFileDialog.FileName;
             
 
             if (dialogOK == true)
             {
                 string strFilenames = "";
-                foreach (string strFilename in fileDialog.FileNames)
+                foreach (string strFilename in openFileDialog.FileNames)
                 {
                     strFilenames += ";" + strFilename;
                 }
@@ -61,6 +67,7 @@ namespace EasyCodingSupporter
         #endregion
 
         #region TranslateFile 파일 변환 부분
+        //System.IO.StreamReader file = new System.IO.StreamReader();
         //public static string TranslateFile(IEnumerable<TextContentsPart> Parts)
         //{
         //    StringBuilder textContents = new StringBuilder();
@@ -75,14 +82,21 @@ namespace EasyCodingSupporter
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "txt file|*.txt";
             saveFileDialog1.Title = "txt저장";
-            var result = saveFileDialog1.ShowDialog();
+            var saveOK = saveFileDialog1.ShowDialog();
 
 
-            //if (result == true)
-            //{// txt파일로 저장. 
-
-            //    File.WriteAllText(saveFileDialog1.FileName, txtConverter.Convert(_subtitleParts));
-            //}
+            //if (saveOK == true)
+            if(saveFileDialog1.ShowDialog().GetValueOrDefault())
+            {// txt파일로 저장.
+                fileName = saveFileDialog1.FileName;
+                this.Title = fileName;
+                //File.WriteAllText(saveFileDialog1.FileName, txtConverter.Convert(_subtitleParts));
+            }
+            else return;
+            using (StreamWriter streamwriterName = new StreamWriter(fileName, false, Encoding.UTF8))
+            {
+                streamwriterName.Write(tbxMain.Text); // xaml의 텍스트 박스를 지정.
+            }
         }
 
         #endregion
@@ -107,6 +121,35 @@ namespace EasyCodingSupporter
                 MessageBox.Show("텍스트 박스에 내용이 없습니다", "입력에러");
             }
         }
+        #endregion
+
+        #region MainTextBox new line 주 입력 공간에 엔터 입력시 개행 코드
+        private void tbxMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                //아래의 세 줄을 주석을 제거하면 가장 최근에 쓴 글이 맨 위로 오게 정렬이 됨.
+                //tbxMain.Text += line + Environment.NewLine;
+                //tbxMain.ScrollToEnd();
+                //tbxMain.Focus();
+                tbxMain.AcceptsReturn = true;
+            }
+        }
+        //public bool AcceptsReturn { get; set; }
+        //public void CreateMyMultilineTextBox()
+        //{
+        //    // Create an instance of a TextBox control.
+        //    TextBox tbxMain = new TextBox();
+
+        //    // Set the Multiline property to true.
+        //    tbxMain.Multiline = true;
+        //    // Add vertical scroll bars to the TextBox control.
+        //    tbxMain.ScrollBars = ScrollBars.Vertical;
+        //    // Allow the RETURN key to be entered in the TextBox control.
+        //    tbxMain.AcceptsReturn = true;
+        //    // Allow the TAB key to be entered in the TextBox control.
+        //    tbxMain.AcceptsTab = true;
+        //}
         #endregion
     }
 }
