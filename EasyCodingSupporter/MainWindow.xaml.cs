@@ -47,7 +47,9 @@ namespace EasyCodingSupporter
         //int counter = 0;
         //string line;
         // 전역 변수 배열에 값을 할당.
-        public string[] ReadTextString_ = new string[12] { "#0", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11" };
+        public const int DigitNumber = 12; // ☆☆치환 단어의 개수를 설정할 수 있음☆☆
+
+        public string[] ReadTextString_ = new string[DigitNumber] { "#0", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11" };//☆☆ 치환 단어의 개수에 따라 증감 시켜야 함 ☆☆
 
         #endregion
 
@@ -125,7 +127,7 @@ namespace EasyCodingSupporter
         }
         #endregion
 
-        #region MainTextBox new line 주 입력 공간에 엔터 입력시 개행 코드
+        #region new line 입력 공간에 엔터 입력시 개행 코드
         private void tbxMain_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -137,23 +139,27 @@ namespace EasyCodingSupporter
                 tbxMain.AcceptsReturn = true;
             }
         }
+        private void tbxOutput_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                //아래의 세 줄을 주석을 제거하면 가장 최근에 쓴 글이 맨 위로 오게 정렬이 됨.
+                //tbxMain.Text += line + Environment.NewLine;
+                //tbxMain.ScrollToEnd();
+                //tbxMain.Focus();
+                tbxOutput.AcceptsReturn = true;
+            }
+        }
+
         #endregion
 
         #region TranslateFile 파일 변환 부분
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {//
-         //Dictionary<string, string> replaceStrings = new Dictionary<string, string>();
-         //replaceStrings.Add("F1", "안녕하세요");
-         //replaceStrings.Add("F2", "저는");
-         //replaceStrings.Add("F3", "이환호");
-         //replaceStrings.Add("F4", "입니다");
-
-
-            //TranslateFile path = new TranslateFile();
-            //MessageBox.Show(tbxSelectedFile.Text);
+         
             int counter = 0;
-            string[] words = new string[12]; // 치환부분을 위한 변수
+            string[] words = new string[DigitNumber]; // 치환부분을 위한 변수
             string coding; // 합성된 문자를 저장하기 위한 변수
 
             // Read the file and display it line by line. 
@@ -162,20 +168,18 @@ namespace EasyCodingSupporter
             //System.IO.StreamReader input = new System.IO.StreamReader(pathFile); // 본문의 내용을 컨텐츠에 담음
             System.IO.StreamReader output = new System.IO.StreamReader(tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
 
-
-
             //string line; // 본문을 위한 변수
-            foreach (string line in mainText.Split(Environment.NewLine.ToCharArray())) // 본문의 한 줄이 공백인지 아닌지 검사
+            foreach (string Line in mainText.Split(Environment.NewLine.ToCharArray())) // 마침표가 있는 단위로 끊어서 읽어들임
             {
                 StringBuilder sb = new StringBuilder();
-                bool[] isReadTextString = new bool[12];
+                bool[] isReadTextString = new bool[DigitNumber];
 
-                for (int j = 0; j < ReadTextString_.Length; j++)
+                for (int j = 0; j < ReadTextString_.Length; j++) // ReadTextString_의 길이 만큼 반복할 수 있음
                 {// 해당 문자열이 있는지 없는지의 여부를 배열에 할당하여 불값으로 전달. 
-                    isReadTextString[j] = line.Contains(ReadTextString_[j]);
+                    isReadTextString[j] = Line.Contains(ReadTextString_[j]);
                 }
 
-                for (int i = 0; i < ReadTextString_.Length; i++)
+                for (int i = 0; i < ReadTextString_.Length; i++)// ReadTextString_의 길이 만큼 반복할 수 있음
                 {
                     var readLine = output.ReadLine();
                     //WordsProcess wp = new WordsProcess();
@@ -190,7 +194,7 @@ namespace EasyCodingSupporter
 
                     else if (isReadTextString[i] && ((words[i] = readLine) != null))
                     {//불값의 참과 공백이 없을 때 실행
-                        var tempLine = line.Replace(ReadTextString_[i], words[i]);
+                        var tempLine = Line.Replace(ReadTextString_[i], words[i]);
                         sb.Append(tempLine);
                         tbxOutput.Text = sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
                         sb.AppendLine(""); // 다음줄로 이동 코드

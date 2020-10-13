@@ -8,7 +8,7 @@
         Title="EasyCodingSupporter" Height="450" Width="1160">
     <Grid>
         <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="1142">
-            <TextBox x:Name="tbxMain" Margin="10,44,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="506" Height="365" VerticalAlignment="Top" KeyUp="tbxMain_KeyUp"/>
+            <TextBox x:Name="tbxMain" Margin="10,44,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="506" Height="365" VerticalAlignment="Top" KeyUp="tbxMain_KeyUp" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             <Button x:Name="btnLoadFile" Content="냠냠" Margin="0,292,19,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnLoadFile_Click"/>
             <Button x:Name="btnRun" Content="뿌지직" Margin="0,357,19,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnRun_Click"/>
             <Label Content="1. #1부터 #12&#xA;까지 지원 가능.&#xA;&#xA;2. 읽을 파일을의&#xA;각 단어를 나열&#xA;&#xA;3. 단어의 끝은&#xA;`` 세 개&#xA;&#xA;4. 즉, 숫자 1 옆의&#xA;~의 키에 해당하는&#xA;`로 구분.&#xA;&#xA;&#xA;" Height="154" Margin="0,10,10,0" VerticalAlignment="Top" FontSize="8" HorizontalAlignment="Right" Width="84"/>
@@ -16,7 +16,7 @@
             <TextBox x:Name="tbxSelectedFile" Margin="10,10,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="1024" Height="21" VerticalAlignment="Top"/>
             <Button x:Name="btnProcess" Content="의쌰" Margin="0,325,19,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnProcess_Click"/>
             <TextBox x:Name="tbxMonitor" HorizontalAlignment="Left" Height="108" Margin="1048,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" IsReadOnly="True"/>
-            <TextBox x:Name="tbxOutput" Margin="528,44,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="506" Height="365" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbxOutput" Margin="528,44,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="506" Height="365" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto" KeyUp="tbxOutput_KeyUp"/>
         </Grid>
 
     </Grid>
