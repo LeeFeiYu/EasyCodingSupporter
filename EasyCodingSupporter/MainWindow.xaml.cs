@@ -43,7 +43,7 @@ namespace EasyCodingSupporter
 
         #region public const string 상수 및 전역 변수 선언 부분
         //전역변수 부분
-        string EndWord = "```";
+        string EndWord = "~~";
         //int counter = 0;
         //string line;
         // 전역 변수 배열에 값을 할당.
@@ -168,8 +168,12 @@ namespace EasyCodingSupporter
             //System.IO.StreamReader input = new System.IO.StreamReader(pathFile); // 본문의 내용을 컨텐츠에 담음
             System.IO.StreamReader output = new System.IO.StreamReader(tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
 
-            //string line; // 본문을 위한 변수
-            foreach (string Line in mainText.Split(Environment.NewLine.ToCharArray())) // 마침표가 있는 단위로 끊어서 읽어들임
+            // 할 일★★★★★★★★★★★★★★★이하 부분의 수정으로 파일의 아래 문장을 계속 읽어들이게 해야함.★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+            string Phrase = tbxMain.Text;
+            string[] Lines = Phrase.Split('`');
+            foreach (var Line in Lines)
+            //foreach (string Line in mainText.Split(new string[] {"`"}, StringSplitOptions.None); //Environment.NewLine.ToCharArray())) // ` 단위로 끊어서 읽어들임
             {
                 StringBuilder sb = new StringBuilder();
                 bool[] isReadTextString = new bool[DigitNumber];
