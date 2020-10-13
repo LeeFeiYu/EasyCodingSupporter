@@ -88,7 +88,7 @@ namespace EasyCodingSupporter
 
 
             //if (saveOK == true)
-            if(saveFileDialog1.ShowDialog().GetValueOrDefault())
+            if(saveOK == true)
             {// txt파일로 저장.
                 fileName = saveFileDialog1.FileName;
                 this.Title = fileName;
@@ -143,31 +143,43 @@ namespace EasyCodingSupporter
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {//
+         //Dictionary<string, string> replaceStrings = new Dictionary<string, string>();
+         //replaceStrings.Add("F1", "안녕하세요");
+         //replaceStrings.Add("F2", "저는");
+         //replaceStrings.Add("F3", "이환호");
+         //replaceStrings.Add("F4", "입니다");
+
+
             //TranslateFile path = new TranslateFile();
             //MessageBox.Show(tbxSelectedFile.Text);
             int counter = 0;
-            string line; // 본문을 위한 변수
             string[] words = new string[12]; // 치환부분을 위한 변수
             string coding; // 합성된 문자를 저장하기 위한 변수
 
-            // Read the file and display it line by line.  
-            System.IO.StreamReader contents = new System.IO.StreamReader(tbxMain.Text); // 본문의 내용을 컨텐츠에 담음
-            System.IO.StreamReader file = new System.IO.StreamReader(@tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
+            // Read the file and display it line by line. 
+            string mainText = tbxMain.Text;
 
-            while ((line = contents.ReadLine()) != null) // 본문의 한 줄이 공백인지 아닌지 검사
+            //System.IO.StreamReader input = new System.IO.StreamReader(pathFile); // 본문의 내용을 컨텐츠에 담음
+            System.IO.StreamReader output = new System.IO.StreamReader(tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
+
+
+
+            //string line; // 본문을 위한 변수
+            foreach (string line in mainText.Split(Environment.NewLine.ToCharArray())) // 본문의 한 줄이 공백인지 아닌지 검사
             {
                 StringBuilder sb = new StringBuilder();
                 bool[] isReadTextString = new bool[12];
 
-                for (int j = 0; j < 12; j++)
+                for (int j = 0; j < ReadTextString_.Length; j++)
                 {// 해당 문자열이 있는지 없는지의 여부를 배열에 할당하여 불값으로 전달. 
                     isReadTextString[j] = line.Contains(ReadTextString_[j]);
                 }
-                
-                for (int i = 0; i < 12; i++)
+
+                for (int i = 0; i < ReadTextString_.Length; i++)
                 {
+                    var readLine = output.ReadLine();
                     //WordsProcess wp = new WordsProcess();
-                    if ( EndWord == file.ReadLine())
+                    if (readLine == EndWord)
                     {
                         sb.AppendLine(""); // 다음줄로 이동 코드
                         tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
@@ -176,28 +188,32 @@ namespace EasyCodingSupporter
                         return;
                     }
 
-                    else if(isReadTextString[i] && ((words[i] = file.ReadLine()) != null))
+                    else if (isReadTextString[i] && ((words[i] = readLine) != null))
                     {//불값의 참과 공백이 없을 때 실행
-                        line = line.Replace(ReadTextString_[i], words[i]);
-                        sb.Append(line);
+                        var tempLine = line.Replace(ReadTextString_[i], words[i]);
+                        sb.Append(tempLine);
                         tbxOutput.Text = sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
                         sb.AppendLine(""); // 다음줄로 이동 코드
                         tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
                     }
-                    
+                    else
+                    {
+                        return;
+                    }
+
                 }
-                
+
 
             }
 
 
-            file.Close();
+            output.Close();
             // System.Console.WriteLine("There were {0} lines.", counter);
             // Suspend the screen.  
             // System.Console.ReadLine();
         }
 
-        
+
 
         //System.IO.StreamReader file = new System.IO.StreamReader();
         //public static string TranslateFile(IEnumerable<TextContentsPart> Parts)
