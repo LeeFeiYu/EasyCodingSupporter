@@ -72,15 +72,6 @@ namespace EasyCodingSupporter
         }
         #endregion
 
-        #region TranslateFile 파일 변환 부분
-        //System.IO.StreamReader file = new System.IO.StreamReader();
-        //public static string TranslateFile(IEnumerable<TextContentsPart> Parts)
-        //{
-        //    StringBuilder textContents = new StringBuilder();
-        //    [DefaultMember("Sentence")]
-        //}
-        #endregion
-
         #region SaveFile 파일 저장 부분
         public void SaveFile()
         {
@@ -143,22 +134,24 @@ namespace EasyCodingSupporter
         }
         #endregion
 
+        #region TranslateFile 파일 변환 부분
+
         private void btnProcess_Click(object sender, RoutedEventArgs e)
-        {
+        {//
             //TranslateFile path = new TranslateFile();
             //MessageBox.Show(tbxSelectedFile.Text);
             int counter = 0;
-            string line;
-            string words;
+            string line; // 본문을 위한 변수
+            string words; // 치환부분을 위한 변수
 
             // Read the file and display it line by line.  
-            System.IO.StreamReader contents = new System.IO.StreamReader(tbxMain.Text);
-            System.IO.StreamReader file = new System.IO.StreamReader(@tbxSelectedFile.Text);
+            System.IO.StreamReader contents = new System.IO.StreamReader(tbxMain.Text); // 본문의 내용을 컨텐츠에 담음
+            System.IO.StreamReader file = new System.IO.StreamReader(@tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
 
-            while((line = contents.ReadLine()) != null)
+            while ((line = contents.ReadLine()) != null) // 본문의 한 줄이 공백인지 아닌지 검사
             {
 
-                while ((words = file.ReadLine()) != null)
+                while ((words = file.ReadLine()) != null) // 치환부분의 한 줄이 공백인지 아닌지 검사
                 {
                     //System.Console.WriteLine(line);
                     tbxMain.Text = words;
@@ -172,6 +165,15 @@ namespace EasyCodingSupporter
             // Suspend the screen.  
             System.Console.ReadLine();
         }
-       
+
+
+        //System.IO.StreamReader file = new System.IO.StreamReader();
+        //public static string TranslateFile(IEnumerable<TextContentsPart> Parts)
+        //{
+        //    StringBuilder textContents = new StringBuilder();
+        //    [DefaultMember("Sentence")]
+        //}
+        #endregion
+
     }
 }
