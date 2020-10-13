@@ -66,6 +66,7 @@
     <Compile Include="Class\LoadFile.cs" />
     <Compile Include="Class\RunCoding.cs" />
     <Compile Include="Class\TranslateFile.cs" />
+    <Compile Include="Class\WordsProcess.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -20,13 +20,11 @@ using System.Reflection;
 using EasyCodingSupporter.Class;
 
 
-
-
 namespace EasyCodingSupporter
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
-    /// </summary>
+    /// </summary>Text_Monitor
     public partial class MainWindow : Window
     {
         private string fileName;
@@ -42,24 +40,15 @@ namespace EasyCodingSupporter
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
+
+        #region public const string 상수 및 전역 변수 선언 부분
         //전역변수 부분
+        string EndWord = "```";
         //int counter = 0;
         //string line;
+        // 전역 변수 배열에 값을 할당.
+        public string[] ReadTextString_ = new string[12] { "#0", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11" };
 
-        #region public const string 상수 선언 부분
-        public const string ReadTextString_0 = "#0";
-        public const string ReadTextString_1 = "#1";
-        public const string ReadTextString_2 = "#2";
-        public const string ReadTextString_3 = "#3";
-        public const string ReadTextString_4 = "#4";
-        public const string ReadTextString_5 = "#5";
-        public const string ReadTextString_6 = "#6";
-        public const string ReadTextString_7 = "#7";
-        public const string ReadTextString_8 = "#8";
-        public const string ReadTextString_9 = "#9";
-        public const string ReadTextString_10 = "#10";
-        public const string ReadTextString_11 = "#11";
-        
         #endregion
 
         #region LoadFile 파일 로드 부분
@@ -108,7 +97,7 @@ namespace EasyCodingSupporter
             else return;
             using (StreamWriter streamwriterName = new StreamWriter(fileName, false, Encoding.UTF8))
             {
-                streamwriterName.Write(tbxMain.Text); // xaml의 텍스트 박스를 지정.
+                streamwriterName.Write(tbxOutput.Text); // xaml의 텍스트 박스를 지정.
             }
         }
 
@@ -168,24 +157,34 @@ namespace EasyCodingSupporter
             while ((line = contents.ReadLine()) != null) // 본문의 한 줄이 공백인지 아닌지 검사
             {
                 StringBuilder sb = new StringBuilder();
-                bool ReadTextString0 = line.Contains(ReadTextString_0);
-                bool ReadTextString1 = line.Contains(ReadTextString_1);
-                bool ReadTextString2 = line.Contains(ReadTextString_2);
-                bool ReadTextString3 = line.Contains(ReadTextString_3);
-                bool ReadTextString4 = line.Contains(ReadTextString_4);
-                bool ReadTextString5 = line.Contains(ReadTextString_5);
-                bool ReadTextString6 = line.Contains(ReadTextString_6);
-                bool ReadTextString7 = line.Contains(ReadTextString_7);
-                bool ReadTextString8 = line.Contains(ReadTextString_8);
-                bool ReadTextString9 = line.Contains(ReadTextString_9);
-                bool ReadTextString10 = line.Contains(ReadTextString_10);
-                bool ReadTextString11 = line.Contains(ReadTextString_11);
+                bool[] isReadTextString = new bool[12];
+
+                for (int j = 0; j < 12; j++)
+                {// 해당 문자열이 있는지 없는지의 여부를 배열에 할당하여 불값으로 전달. 
+                    isReadTextString[j] = line.Contains(ReadTextString_[j]);
+                }
                 
-                
-                if(ReadTextString1 && ((words[0] = file.ReadLine()) != null))
+                for (int i = 0; i < 12; i++)
                 {
-                    line = line.Replace(ReadTextString_1, words[0]);
-                    sb.Append(line);
+                    //WordsProcess wp = new WordsProcess();
+                    if ( EndWord == file.ReadLine())
+                    {
+                        sb.AppendLine(""); // 다음줄로 이동 코드
+                        tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
+                        sb.AppendLine(""); // 다음줄로 이동 코드
+                        tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
+                        return;
+                    }
+
+                    else if(isReadTextString[i] && ((words[i] = file.ReadLine()) != null))
+                    {//불값의 참과 공백이 없을 때 실행
+                        line = line.Replace(ReadTextString_[i], words[i]);
+                        sb.Append(line);
+                        tbxOutput.Text = sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                        sb.AppendLine(""); // 다음줄로 이동 코드
+                        tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
+                    }
+                    
                 }
                 
 
@@ -193,11 +192,12 @@ namespace EasyCodingSupporter
 
 
             file.Close();
-            //System.Console.WriteLine("There were {0} lines.", counter);
+            // System.Console.WriteLine("There were {0} lines.", counter);
             // Suspend the screen.  
-            System.Console.ReadLine();
+            // System.Console.ReadLine();
         }
 
+        
 
         //System.IO.StreamReader file = new System.IO.StreamReader();
         //public static string TranslateFile(IEnumerable<TextContentsPart> Parts)
