@@ -41,10 +41,26 @@ namespace EasyCodingSupporter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
+
         //전역변수 부분
         //int counter = 0;
         //string line;
+
+        #region public const string 상수 선언 부분
+        public const string ReadTextString_0 = "#0";
+        public const string ReadTextString_1 = "#1";
+        public const string ReadTextString_2 = "#2";
+        public const string ReadTextString_3 = "#3";
+        public const string ReadTextString_4 = "#4";
+        public const string ReadTextString_5 = "#5";
+        public const string ReadTextString_6 = "#6";
+        public const string ReadTextString_7 = "#7";
+        public const string ReadTextString_8 = "#8";
+        public const string ReadTextString_9 = "#9";
+        public const string ReadTextString_10 = "#10";
+        public const string ReadTextString_11 = "#11";
+        
+        #endregion
 
         #region LoadFile 파일 로드 부분
         public void LoadFile()
@@ -142,7 +158,8 @@ namespace EasyCodingSupporter
             //MessageBox.Show(tbxSelectedFile.Text);
             int counter = 0;
             string line; // 본문을 위한 변수
-            string words; // 치환부분을 위한 변수
+            string[] words = new string[12]; // 치환부분을 위한 변수
+            string coding; // 합성된 문자를 저장하기 위한 변수
 
             // Read the file and display it line by line.  
             System.IO.StreamReader contents = new System.IO.StreamReader(tbxMain.Text); // 본문의 내용을 컨텐츠에 담음
@@ -150,13 +167,28 @@ namespace EasyCodingSupporter
 
             while ((line = contents.ReadLine()) != null) // 본문의 한 줄이 공백인지 아닌지 검사
             {
-
-                while ((words = file.ReadLine()) != null) // 치환부분의 한 줄이 공백인지 아닌지 검사
+                StringBuilder sb = new StringBuilder();
+                bool ReadTextString0 = line.Contains(ReadTextString_0);
+                bool ReadTextString1 = line.Contains(ReadTextString_1);
+                bool ReadTextString2 = line.Contains(ReadTextString_2);
+                bool ReadTextString3 = line.Contains(ReadTextString_3);
+                bool ReadTextString4 = line.Contains(ReadTextString_4);
+                bool ReadTextString5 = line.Contains(ReadTextString_5);
+                bool ReadTextString6 = line.Contains(ReadTextString_6);
+                bool ReadTextString7 = line.Contains(ReadTextString_7);
+                bool ReadTextString8 = line.Contains(ReadTextString_8);
+                bool ReadTextString9 = line.Contains(ReadTextString_9);
+                bool ReadTextString10 = line.Contains(ReadTextString_10);
+                bool ReadTextString11 = line.Contains(ReadTextString_11);
+                
+                
+                if(ReadTextString1 && ((words[0] = file.ReadLine()) != null))
                 {
-                    //System.Console.WriteLine(line);
-                    tbxMain.Text = words;
-                    counter++;
+                    line = line.Replace(ReadTextString_1, words[0]);
+                    sb.Append(line);
                 }
+                
+
             }
 
 
