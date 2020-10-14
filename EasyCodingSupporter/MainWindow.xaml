@@ -15,7 +15,7 @@
             <Label Content="Ver: 1.0.0" Height="26" Margin="0,383,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
             <TextBox x:Name="tbxSelectedFile" Margin="10,10,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="1024" Height="21" VerticalAlignment="Top"/>
             <Button x:Name="btnProcess" Content="의쌰" Margin="0,325,19,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnProcess_Click"/>
-            <TextBox x:Name="tbxMonitor" HorizontalAlignment="Left" Height="108" Margin="1048,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" IsReadOnly="True"/>
+            <TextBox x:Name="tbxMonitor" HorizontalAlignment="Left" Height="108" Margin="1048,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" KeyUp="tbxMonitor_KeyUp"/>
             <TextBox x:Name="tbxOutput" Margin="528,44,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="506" Height="365" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto" KeyUp="tbxOutput_KeyUp"/>
         </Grid>
 
