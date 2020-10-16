@@ -186,7 +186,7 @@ namespace EasyCodingSupporter
             string BufferWords;
             while ((BufferWords = LoadedWordFile.ReadLine()) != null)
             {
-                tbxOutput.Text = BufferWords;
+                tbxOutput.Text += BufferWords;
                 //    int BoolEndWord = string.Compare(EndWord, BufferWords); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
                 //    if (BoolEndWord != 0)
                 //    {
