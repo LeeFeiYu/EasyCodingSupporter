@@ -180,27 +180,28 @@ namespace EasyCodingSupporter
             bool[] isReadTextString = new bool[DigitNumber];
 
 
-            Load_word:
+        Load_word:
 
             StreamReader LoadedWordFile = new StreamReader(tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
             string BufferWords;
             while ((BufferWords = LoadedWordFile.ReadLine()) != null)
             {
-                int BoolEndWord = string.Compare(EndWord, BufferWords); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                if (BoolEndWord != 0)
-                {
-                    //int BoolEndWord = string.Compare(EndWord, buffer); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                    words[counter] = BufferWords;
-                    sb.AppendLine(""); // 다음줄로 이동 코드
-                    tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
-                    tbxOutput.Text = words[counter]; // 테스트 코드
-                    counter += counter;
-                }
-                else
-                {
-                    break;
-                }
-                
+                tbxOutput.Text = BufferWords;
+                //    int BoolEndWord = string.Compare(EndWord, BufferWords); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
+                //    if (BoolEndWord != 0)
+                //    {
+                //        //int BoolEndWord = string.Compare(EndWord, buffer); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
+                //        words[counter] = BufferWords;
+                //        sb.AppendLine(""); // 다음줄로 이동 코드
+                //        tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
+                //        tbxOutput.Text = words[counter]; // 테스트 코드
+                //        counter += counter;
+                //    }
+                //    else
+                //    {
+                //        break;
+                //    }
+
             }
 
             //string Phrase = tbxMain.Text;
