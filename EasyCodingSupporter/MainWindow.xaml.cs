@@ -193,7 +193,7 @@ namespace EasyCodingSupporter
                     words[counter] = BufferWords;
                     tbxMonitor.Text += words[counter]; // 테스트 코드
                     tbxMonitor.Text += sb.ToString(); // 다음줄로 이동 실행
-                    counter += counter;
+                    counter++;
                 }
                 else
                 {
@@ -203,8 +203,15 @@ namespace EasyCodingSupporter
             }
 
             string[] strarray = tbxMain.Text.Split(Environment.NewLine.ToCharArray());
-            ;
-            foreach (var Lines in strarray)
+            List<string> strList = new List<string>();
+            foreach (var item in strarray)
+            {
+                if(!string.IsNullOrWhiteSpace(item))
+                {
+                    strList.Add(item);
+                }
+            }
+            foreach (var Lines in strList)
             {
                 int BoolProgramOver = string.Compare(ProgramOver, words[0].ToString()); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
                 if (BoolProgramOver == 0)
@@ -220,101 +227,23 @@ namespace EasyCodingSupporter
                     for (int i_isReadTextString = 0; i_isReadTextString < counter; i_isReadTextString++) // ReadTextString_의 길이 만큼 반복할 수 있음
                     {// 해당 문자열이 있는지 없는지의 여부를 배열에 할당하여 불값으로 전달. 상수값을 전달
                         isReadTextString[i_isReadTextString] = Lines.Contains(ReadTextString_[i_isReadTextString]);
-                    }
-
-                    if (isReadTextString[0])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[0];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[0] = false;
-                    }
-                    else if (isReadTextString[1])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[1];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[1] = false;
-                    }
-                    else if (isReadTextString[2])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[2];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[2] = false;
-                    }
-                    else if (isReadTextString[3])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[3];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[3] = false;
-                    }
-                    else if (isReadTextString[4])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[4];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[4] = false;
-                    }
-                    else if (isReadTextString[5])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[5];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[5] = false;
-                    }
-                    else if (isReadTextString[6])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[6];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[6] = false;
-                    }
-                    else if (isReadTextString[7])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[7];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[7] = false;
-                    }
-                    else if (isReadTextString[8])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[8];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[8] = false;
-                    }
-                    else if (isReadTextString[9])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[9];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[9] = false;
-                    }
-                    else if (isReadTextString[10])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[10];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[10] = false;
-                    }
-                    else if (isReadTextString[11])
-                    {
-                        tbxOutput.Text += Lines;
-                        tbxOutput.Text += words[11];
-                        tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                        isReadTextString[11] = false;
-                    }
-                    else
-                    {
-                        counter = 0;
-                        tbxMonitor.Text += "두번째e";
+                        //tbxOutput.Text += ReadTextString_[i_isReadTextString];// 테스트 코드
                     }
 
 
-                    counter = 0;
-
+                    tbxOutput.Text += Lines.Replace("#0", words[0])
+                        .Replace("#1", words[1])
+                        .Replace("#2", words[2])
+                        .Replace("#3", words[3])
+                        .Replace("#4", words[4])
+                        .Replace("#5", words[5])
+                        .Replace("#6", words[6])
+                        .Replace("#7", words[7])
+                        .Replace("#8", words[8])
+                        .Replace("#9", words[9])
+                        .Replace("#10", words[10])
+                        .Replace("#11", words[11]);
+                    tbxOutput.Text += Environment.NewLine;
                 }
             }
             //string Phrase = tbxMain.Text;
