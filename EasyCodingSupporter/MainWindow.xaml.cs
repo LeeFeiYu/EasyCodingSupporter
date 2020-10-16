@@ -43,7 +43,7 @@ namespace EasyCodingSupporter
 
         #region public const string 상수 및 전역 변수 선언 부분
         //전역변수 부분
-        int PuaseWord = 8888;
+        string PuaseWord = "``";
         string EndWord = "~~";
         string ProgramOver = "~~~~~";
         string ReadLineFromLoadWordFile = "";
@@ -168,7 +168,8 @@ namespace EasyCodingSupporter
         #region TranslateFile 파일 변환 부분
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
-        {
+        {//
+
             int counter = 0;
             string coding; // 합성된 문자를 저장하기 위한 변수
 
@@ -180,28 +181,18 @@ namespace EasyCodingSupporter
             bool[] isReadTextString = new bool[DigitNumber];
 
 
-        Load_word:
+            Load_word:
+
+            int i_counter = 0;
 
             StreamReader LoadedWordFile = new StreamReader(tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
-            string BufferWords;
-            while ((BufferWords = LoadedWordFile.ReadLine()) != null)
+            string buffer;
+            while (((buffer = LoadedWordFile.ReadLine()) != EndWord))
             {
-                tbxOutput.Text += BufferWords;
-                int BoolEndWord = string.Compare(EndWord, BufferWords); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                if (BoolEndWord != 0)
-                {
-                    //int BoolEndWord = string.Compare(EndWord, buffer); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                    words[counter] = BufferWords;
-                    sb.AppendLine(""); // 다음줄로 이동 코드
-                    tbxOutput.Text = sb.ToString(); // 다음줄로 이동 실행
-                    tbxOutput.Text = words[counter]; // 테스트 코드
-                    counter += counter;
-                }
-                else
-                {
-                    break;
-                }
-
+                //int BoolEndWord = string.Compare(EndWord, buffer); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
+                words[counter] = buffer;
+                tbxMonitor.Text = words[counter]; // 테스트 코드
+                counter += counter;
             }
 
             string Phrase = tbxMain.Text;
@@ -220,8 +211,8 @@ namespace EasyCodingSupporter
                     counter = 0;
                     continue;
                 }
-
-
+                
+                
                 else if (BoolProgramOver != 0)
                 {
                     tbxMonitor.Text = "else if"; // 테스트 코드
@@ -348,11 +339,6 @@ namespace EasyCodingSupporter
 
 
             }
-
-
-
-
-
             //LoadedWordFile.Close();
 
         }
