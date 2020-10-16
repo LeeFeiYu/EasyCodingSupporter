@@ -190,7 +190,7 @@ namespace EasyCodingSupporter
                 }
             }
 
-            //while (isContinue==true)
+            //do
             //{
                 while ((BufferWords = LoadedWordFile.ReadLine()) != null)
                 {
@@ -250,17 +250,17 @@ namespace EasyCodingSupporter
                 for (int i = 0; i < counter; i++)
                 {// 프로그램 단어의 끝 단어가 나오지 않으면 계속 반복하게 설정.
                     int BoolProgramOver = string.Compare(ProgramOver, words[i]); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                    if (BoolProgramOver == 0)
-                    {
-                        isContinue = false;
-                    }
-                    else
+                    if (BoolProgramOver != 0)
                     {
                         isContinue = true;
                     }
+                    else
+                    {
+                        isContinue = false;
+                    }
                 }
 
-            //}
+            //} while (isContinue);
 
             
             
