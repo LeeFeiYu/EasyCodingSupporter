@@ -193,8 +193,8 @@ namespace EasyCodingSupporter
                 {
                     //int BoolEndWord = string.Compare(EndWord, buffer); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
                     words[counter] = BufferWords;
-                    tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
-                    tbxOutput.Text += words[counter]; // 테스트 코드
+                    tbxMonitor.Text += words[counter]; // 테스트 코드
+                    tbxMonitor.Text += sb.ToString(); // 다음줄로 이동 실행
                     counter += counter;
                 }
                 else
@@ -204,15 +204,10 @@ namespace EasyCodingSupporter
 
             }
 
-            string Phrase = tbxMain.Text;
-            string[] Lines = Phrase.Split('`');
-            foreach (var Line in Lines)
-            //foreach (string Line in mainText.Split(new string[] {"`"}, StringSplitOptions.None); //Environment.NewLine.ToCharArray())) // ` 단위로 끊어서 읽어들임
+            StreamReader Phrase = new StreamReader(tbxMain.Text);
+            string Line;
+            while ((Line = Phrase.ReadLine()) != null)
             {
-                //string Loadedwords = buffer;
-                //string[] TempLine = Phrase.Split('`'); // 배열 생성. 임시로 읽어들인 단어를 각 배열에 저장하기 위해 생성
-                //foreach (var LoadedWord in Loadedwords)
-
                 int BoolProgramOver = string.Compare(ProgramOver, words[0].ToString()); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
                 if (BoolProgramOver == 0)
                 {// 프로그램 종료
@@ -234,85 +229,85 @@ namespace EasyCodingSupporter
                     {
                         if (isReadTextString[0])
                         {
-                            sb.Append(Line[0]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[0];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[0] = false;
                         }
                         else if (isReadTextString[1])
                         {
-                            sb.Append(Line[1]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[1];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[1] = false;
                         }
                         else if (isReadTextString[2])
                         {
-                            sb.Append(Line[2]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[2];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[2] = false;
                         }
                         else if (isReadTextString[3])
                         {
-                            sb.Append(Line[3]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[3];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[3] = false;
                         }
                         else if (isReadTextString[4])
                         {
-                            sb.Append(Line[4]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[4];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[4] = false;
                         }
                         else if (isReadTextString[5])
                         {
-                            sb.Append(Line[5]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[5];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[5] = false;
                         }
                         else if (isReadTextString[6])
                         {
-                            sb.Append(Line[6]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[6];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[6] = false;
                         }
                         else if (isReadTextString[7])
                         {
-                            sb.Append(Line[7]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[7];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[7] = false;
                         }
                         else if (isReadTextString[8])
                         {
-                            sb.Append(Line[8]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[8];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[8] = false;
                         }
                         else if (isReadTextString[9])
                         {
-                            sb.Append(Line[9]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[9];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[9] = false;
                         }
                         else if (isReadTextString[10])
                         {
-                            sb.Append(Line[10]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[10];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[10] = false;
                         }
                         else if (isReadTextString[11])
                         {
-                            sb.Append(Line[11]);
-                            tbxOutput.Text += sb.ToString(); // 변환된 내용을 아웃풋 창에 출력
+                            tbxOutput.Text += Line;
+                            tbxOutput.Text += words[11];
                             tbxOutput.Text += sb.ToString(); // 다음줄로 이동 실행
                             isReadTextString[11] = false;
                         }
@@ -327,6 +322,17 @@ namespace EasyCodingSupporter
 
                     goto Load_word;
                 }
+            }
+            //string Phrase = tbxMain.Text;
+            //string[] Lines = Phrase.Split('`');
+            //foreach (var Line in Lines)
+            //foreach (string Line in mainText.Split(new string[] {"`"}, StringSplitOptions.None); //Environment.NewLine.ToCharArray())) // ` 단위로 끊어서 읽어들임
+            {
+                //string Loadedwords = buffer;
+                //string[] TempLine = Phrase.Split('`'); // 배열 생성. 임시로 읽어들인 단어를 각 배열에 저장하기 위해 생성
+                //foreach (var LoadedWord in Loadedwords)
+
+                
 
 
 
