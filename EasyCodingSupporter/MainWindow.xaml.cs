@@ -170,106 +170,100 @@ namespace EasyCodingSupporter
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
             int counter = 0;
-            string coding; // 합성된 문자를 저장하기 위한 변수
-
-            // Read the file and display it line by line. 
-
-            //System.IO.StreamReader input = new System.IO.StreamReader(pathFile); // 본문의 내용을 컨텐츠에 담음
-
+            
             StringBuilder sb = new StringBuilder();
             bool[] isReadTextString = new bool[DigitNumber];
-
 
             StreamReader LoadedWordFile = new StreamReader(tbxSelectedFile.Text); // 치환파일의 내용을 파일에 담음
             string BufferWords;
             sb.AppendLine(""); // 다음줄로 이동 코드
-            while ((BufferWords = LoadedWordFile.ReadLine()) != null)
-            {
-                //tbxOutput.Text += BufferWords;
-                int BoolEndWord = string.Compare(EndWord, BufferWords); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                if (BoolEndWord != 0)
-                {
-                    //int BoolEndWord = string.Compare(EndWord, buffer); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                    words[counter] = BufferWords;
-                    tbxMonitor.Text += words[counter]; // 테스트 코드
-                    tbxMonitor.Text += sb.ToString(); // 다음줄로 이동 실행
-                    counter++;
-                }
-                else
-                {
-                    break;
-                }
+            bool isContinue = true; // 문장이 계속 되는 한 계속 반복하게
 
-            }
-
+            
             string[] strarray = tbxMain.Text.Split(Environment.NewLine.ToCharArray());
             List<string> strList = new List<string>();
             foreach (var item in strarray)
             {
-                if(!string.IsNullOrWhiteSpace(item))
+                if (!string.IsNullOrWhiteSpace(item))
                 {
                     strList.Add(item);
                 }
             }
-            foreach (var Lines in strList)
-            {
-                int BoolProgramOver = string.Compare(ProgramOver, words[0].ToString()); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
-                if (BoolProgramOver == 0)
-                {// 프로그램 종료
-                    tbxMonitor.Text = "프로그램 종료"; // 테스트 코드
-                    counter = 0;
-                    continue;
-                }
-                else if (BoolProgramOver != 0)
-                {
-                    tbxMonitor.Text += "첫 번째"; // 테스트 코드
 
-                    for (int i_isReadTextString = 0; i_isReadTextString < counter; i_isReadTextString++) // ReadTextString_의 길이 만큼 반복할 수 있음
-                    {// 해당 문자열이 있는지 없는지의 여부를 배열에 할당하여 불값으로 전달. 상수값을 전달
-                        isReadTextString[i_isReadTextString] = Lines.Contains(ReadTextString_[i_isReadTextString]);
-                        //tbxOutput.Text += ReadTextString_[i_isReadTextString];// 테스트 코드
+            //while (isContinue==true)
+            //{
+                while ((BufferWords = LoadedWordFile.ReadLine()) != null)
+                {
+                    //tbxOutput.Text += BufferWords;
+                    int BoolEndWord = string.Compare(EndWord, BufferWords); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
+                    if (BoolEndWord != 0)
+                    {
+                        words[counter] = BufferWords;
+                        tbxMonitor.Text += words[counter]; // 테스트 코드
+                        tbxMonitor.Text += sb.ToString(); // 다음줄로 이동 실행
+                        counter++;
+                    }
+                    else
+                    {
+                        break;
                     }
 
-
-                    tbxOutput.Text += Lines.Replace("#0", words[0])
-                        .Replace("#1", words[1])
-                        .Replace("#2", words[2])
-                        .Replace("#3", words[3])
-                        .Replace("#4", words[4])
-                        .Replace("#5", words[5])
-                        .Replace("#6", words[6])
-                        .Replace("#7", words[7])
-                        .Replace("#8", words[8])
-                        .Replace("#9", words[9])
-                        .Replace("#10", words[10])
-                        .Replace("#11", words[11]);
-                    tbxOutput.Text += Environment.NewLine;
                 }
-            }
-            //string Phrase = tbxMain.Text;
-            //string[] Lines = Phrase.Split('`');
-            //foreach (var Line in Lines)
-            //foreach (string Line in mainText.Split(new string[] {"`"}, StringSplitOptions.None); //Environment.NewLine.ToCharArray())) // ` 단위로 끊어서 읽어들임
-            {
-                //string Loadedwords = buffer;
-                //string[] TempLine = Phrase.Split('`'); // 배열 생성. 임시로 읽어들인 단어를 각 배열에 저장하기 위해 생성
-                //foreach (var LoadedWord in Loadedwords)
+
+                foreach (var Lines in strList)
+                {
+                    int BoolProgramOver = string.Compare(ProgramOver, words[0].ToString()); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
+                    if (BoolProgramOver == 0)
+                    {// 프로그램 종료
+                        tbxMonitor.Text = "프로그램 종료"; // 테스트 코드
+                        counter = 0;
+                        continue;
+                    }
+                    else if (BoolProgramOver != 0)
+                    {
+                        tbxMonitor.Text += "첫 번째"; // 테스트 코드
+
+                        for (int i_isReadTextString = 0; i_isReadTextString < counter; i_isReadTextString++) // ReadTextString_의 길이 만큼 반복할 수 있음
+                        {// 해당 문자열이 있는지 없는지의 여부를 배열에 할당하여 불값으로 전달. 상수값을 전달
+                            isReadTextString[i_isReadTextString] = Lines.Contains(ReadTextString_[i_isReadTextString]);
+                            //tbxOutput.Text += ReadTextString_[i_isReadTextString];// 테스트 코드
+                        }
 
 
+                        tbxOutput.Text += Lines.Replace("#0", words[0])
+                            .Replace("#1", words[1])
+                            .Replace("#2", words[2])
+                            .Replace("#3", words[3])
+                            .Replace("#4", words[4])
+                            .Replace("#5", words[5])
+                            .Replace("#6", words[6])
+                            .Replace("#7", words[7])
+                            .Replace("#8", words[8])
+                            .Replace("#9", words[9])
+                            .Replace("#10", words[10])
+                            .Replace("#11", words[11]);
+                        tbxOutput.Text += Environment.NewLine;
+                    }
+                }
 
 
+                for (int i = 0; i < counter; i++)
+                {// 프로그램 단어의 끝 단어가 나오지 않으면 계속 반복하게 설정.
+                    int BoolProgramOver = string.Compare(ProgramOver, words[i]); // 읽어들인 문장과 엔드워드가 같으면 0을 반환. 다르면 앞쪽 글자가 우선일 경우 0이하, 뒷쪽 글자가 우선일 경우 0보다 큰 수 반환
+                    if (BoolProgramOver == 0)
+                    {
+                        isContinue = false;
+                    }
+                    else
+                    {
+                        isContinue = true;
+                    }
+                }
 
+            //}
 
-
-
-
-
-            }
-
-
-
-
-
+            
+            
             //LoadedWordFile.Close();
 
         }
