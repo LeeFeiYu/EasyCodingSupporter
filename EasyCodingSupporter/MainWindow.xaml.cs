@@ -47,7 +47,7 @@ namespace EasyCodingSupporter
         string EndWord = "~~";
         string ProgramOver = "~~~~~";
         string ReadLineFromLoadWordFile = "";
-        string[] words = new string[DigitNumber]; // 치환부분을 위한 변수
+        string[] words = new string [DigitNumber]; // 치환부분을 위한 변수
         //int counter = 0;
         //string line;
         // 전역 변수 배열에 값을 할당.
@@ -193,9 +193,6 @@ namespace EasyCodingSupporter
                     while ((ReadLineFromLoadWordFile = LoadedWordFile.ReadLine()) != EndWord)// 교체될 단어들을 읽어들임.
                     {
                         words[i_counter] = LoadedWordFile.ReadLine();
-                        tbxMonitor.Text = words[i_counter];// 테스트 코드
-                        sb.AppendLine(""); // 다음줄로 이동 코드
-                        tbxMonitor.Text = sb.ToString(); // 다음줄로 이동 실행
                         i_counter += i_counter;
 
                         //for (int i_ForWords = 0; i_ForWords < DigitNumber; i_ForWords++)
@@ -275,6 +272,13 @@ namespace EasyCodingSupporter
                         //}
 
 
+                    }
+
+                    for (int i = 0; i < i_counter; i++)
+                    {//테스트 코드 삭제가능
+                        tbxMonitor.Text = words[i];// 테스트 코드
+                        //sb.AppendLine(""); // 다음줄로 이동 코드
+                        //tbxMonitor.Text = sb.ToString(); // 다음줄로 이동 실행
                     }
 
 
