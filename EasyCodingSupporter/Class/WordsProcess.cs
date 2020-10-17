@@ -8,9 +8,9 @@ namespace EasyCodingSupporter.Class
 {
     class WordsProcess
     {
-        //public string Method_Words()
+        //public string Method_Words(string word)
         //{
-        //    words[i] = file.ReadLine()
+        //    //words[i] = file.ReadLine()
         //}
 
     }
